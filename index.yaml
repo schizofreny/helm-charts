@@ -1,0 +1,25 @@
+apiVersion: v1
+entries:
+  intellinet-pdu-exporter:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2020-10-14T16:56:26.371341273Z"
+    description: A Helm chart for Kubernetes
+    digest: 561e4780c4c1ff5ebc78730e6640fe15372999fe01f041dcfcfe8924cc2c9108
+    name: intellinet-pdu-exporter
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/intellinet-pdu-exporter-0.0.1/intellinet-pdu-exporter-0.0.1.tgz
+    version: 0.0.1
+  mikrotik-exporter:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2020-10-14T16:56:26.504828763Z"
+    description: A Helm chart for Kubernetes
+    digest: 151b2484a995c5484c18b3c64b7efb5199ca1b8999c281dadd06621a96926e44
+    name: mikrotik-exporter
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/mikrotik-exporter-0.0.1/mikrotik-exporter-0.0.1.tgz
+    version: 0.0.1
+generated: "2020-10-14T16:56:26.194042156Z"

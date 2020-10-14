@@ -1,0 +1,7 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: {{ include "helpers.fullname" . }}
+data:
+  config.yaml: |-
+{{ .Values.configMap.config | indent 4 }}

@@ -22,4 +22,15 @@ entries:
     urls:
     - https://github.com/schizofreny/helm-charts/releases/download/mikrotik-exporter-0.0.1/mikrotik-exporter-0.0.1.tgz
     version: 0.0.1
+  sentry-exporter:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-10-14T17:22:21.852116962Z"
+    description: A Helm chart for Kubernetes
+    digest: 3a451b542631ef51fb403e277b95d301e5b85f6886836fd803c044f7b789b6f0
+    name: sentry-exporter
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/sentry-exporter-0.1.0/sentry-exporter-0.1.0.tgz
+    version: 0.1.0
 generated: "2020-10-14T16:56:26.194042156Z"

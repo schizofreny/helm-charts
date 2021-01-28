@@ -14,6 +14,16 @@ entries:
   intellinet-pdu-exporter:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2021-01-28T14:41:30.986292451Z"
+    description: A Helm chart for https://github.com/schizofreny/intellinet-pdu-exporter
+    digest: c50ed559d8ebb166535eaa191bb9ca3aa1b9cd9d47fe2fcdbe55f81362ef1444
+    name: intellinet-pdu-exporter
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/intellinet-pdu-exporter-0.1.0/intellinet-pdu-exporter-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2020-10-14T16:56:26.371341273Z"
     description: A Helm chart for Kubernetes
     digest: 561e4780c4c1ff5ebc78730e6640fe15372999fe01f041dcfcfe8924cc2c9108

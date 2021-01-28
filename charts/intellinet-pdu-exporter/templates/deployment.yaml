@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "helpers.fullname" . }}
+  name: {{ include "intellinetPduExporter.fullname" . }}
   labels:
-    {{- include "helpers.labels" . | nindent 4 }}
+    {{- include "intellinetPduExporter.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "helpers.selectorLabels" . | nindent 6 }}
+      {{- include "intellinetPduExporter.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "helpers.selectorLabels" . | nindent 8 }}
+        {{- include "intellinetPduExporter.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "helpers.serviceAccountName" . }}
+      serviceAccountName: {{ include "intellinetPduExporter.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

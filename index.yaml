@@ -33,6 +33,17 @@ entries:
     urls:
     - https://github.com/schizofreny/helm-charts/releases/download/mikrotik-exporter-0.0.1/mikrotik-exporter-0.0.1.tgz
     version: 0.0.1
+  ping-exporter:
+  - apiVersion: v2
+    appVersion: v0.4.5
+    created: "2021-01-28T14:19:25.614759476Z"
+    description: A Helm chart for Kubernetes
+    digest: 1c4d408f4c1e0bc6c15f5f39be66e5ebd8b6c11fa7ba7451c343a5d7f3e13840
+    name: ping-exporter
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/ping-exporter-0.1.0/ping-exporter-0.1.0.tgz
+    version: 0.1.0
   sentry-exporter:
   - apiVersion: v2
     appVersion: 1.16.0

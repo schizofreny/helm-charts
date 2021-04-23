@@ -1,0 +1,26 @@
+# Default values for postgres-backup.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: ghcr.io/panzelva/postgres-backup
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+cronjob:
+  schedule: "0 0 * * *"
+  startingDeadlineSeconds: 20
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  suspend: false
+  job:
+    backoffLimit: 6
+  container:
+    envFrom: null
+    restartPolicy: OnFailure

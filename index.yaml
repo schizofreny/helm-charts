@@ -54,6 +54,17 @@ entries:
     urls:
     - https://github.com/schizofreny/helm-charts/releases/download/ping-exporter-0.1.0/ping-exporter-0.1.0.tgz
     version: 0.1.0
+  postgres-backup:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2021-04-23T20:09:04.045453319Z"
+    description: A Helm chart for Kubernetes
+    digest: c2b5a338fbce6867cbf39559ff3ee4b7f9e56f9d16b36ecc7fd332afa8316c4b
+    name: postgres-backup
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/postgres-backup-0.0.1/postgres-backup-0.0.1.tgz
+    version: 0.0.1
   sentry-exporter:
   - apiVersion: v2
     appVersion: 1.16.0

@@ -3,6 +3,16 @@ entries:
   httpbin:
   - apiVersion: v2
     appVersion: 0.6.1
+    created: "2021-09-17T12:53:42.101122657Z"
+    description: A Helm chart for Kubernetes
+    digest: 541a8d69b39d90084a49fe4582de7951a36b46382341fb4c90c7fb12a70ff633
+    name: httpbin
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/httpbin-0.2.0/httpbin-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 0.6.1
     created: "2021-01-18T11:51:29.198354822Z"
     description: A Helm chart for Kubernetes
     digest: bef5b001a39f982c3678acf21655b8275e8e1889f2980bde869810aec72ac179

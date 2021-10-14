@@ -95,6 +95,21 @@ entries:
     urls:
     - https://github.com/schizofreny/helm-charts/releases/download/postgres-backup-0.0.1/postgres-backup-0.0.1.tgz
     version: 0.0.1
+  rabbitmq-messaging-topology-operator:
+  - apiVersion: v2
+    appVersion: 1.2.1
+    created: "2021-10-14T11:38:33.254299561Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.10.0
+    description: A Helm chart for Kubernetes
+    digest: 51f60bfd870847356bc2b3f103dd12a5a718234a6fb35edd7f523047c5ccad9e
+    name: rabbitmq-messaging-topology-operator
+    type: application
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/rabbitmq-messaging-topology-operator-0.1.0/rabbitmq-messaging-topology-operator-0.1.0.tgz
+    version: 0.1.0
   sentry-exporter:
   - apiVersion: v2
     appVersion: 1.16.0

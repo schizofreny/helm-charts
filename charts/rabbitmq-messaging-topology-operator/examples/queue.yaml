@@ -1,0 +1,10 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: lazy-queue-one
+spec:
+  name: lazy-queue-one
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq

@@ -1,0 +1,12 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: Policy
+metadata:
+  name: lazy-queue-policy
+spec:
+  name: lazy-queue
+  pattern: "^lazy-queue-"
+  applyTo: "queues"
+  definition:
+    queue-mode: lazy
+  rabbitmqClusterReference:
+    name: rabbitmq

@@ -1,5 +1,4 @@
 {{- if .Values.wandb.ingress.enabled -}}
-{{- $fullName := include "wandb.fullname" . -}}
 {{- $svcPort := .Values.wandb.service.port -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
@@ -24,11 +23,11 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullName }}
+                name: wandb
                 port:
                   number: {{ $svcPort }}
               {{- else }}
-              serviceName: {{ $fullName }}
+              serviceName: wandb
               servicePort: {{ $svcPort }}
               {{- end }}
           {{- end }}

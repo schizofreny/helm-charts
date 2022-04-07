@@ -37,6 +37,13 @@ minio:
     port: 9000
     targetPort: 9000
 
+  ingress:
+    enabled: true
+    host: wandbminio.k8s.s9y.io
+    paths:
+      - path: /
+        pathType: Prefix
+
   resources:
     limits:
       cpu: 1

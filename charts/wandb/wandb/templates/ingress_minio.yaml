@@ -1,3 +1,5 @@
+{{- if .Values.minio.ingress.enabled -}}
+{{- $svcPort := .Values.minio.service.port -}}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
 {{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -10,13 +12,23 @@ metadata:
   name: minio
 spec:
   rules:
-    - host: "wandbminio.k8s.s9y.io"
+    - host: {{ .Values.minio.ingress.host | quote }}
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          {{- range .Values.minio.ingress.paths }}
+          - path: {{ .path }}
+            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+            pathType: {{ .pathType }}
+            {{- end }}
             backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
                 name: minio
                 port:
-                  number: 9001
+                  number: {{ $svcPort }}
+              {{- else }}
+              serviceName: minio
+              servicePort: {{ $svcPort }}
+              {{- end }}
+          {{- end }}
+{{- end }}

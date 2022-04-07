@@ -11,8 +11,8 @@ spec:
       targetPort: {{ .Values.minio.service.targetPort }}
       protocol: TCP
       name: minio
-    - port: 9001
-      targetPort: 9001
+    - port: {{ .Values.minio.service.consolePort }}
+      targetPort: {{ .Values.minio.service.consoleTargetPort }}
       protocol: TCP
       name: minioconsole
   selector:

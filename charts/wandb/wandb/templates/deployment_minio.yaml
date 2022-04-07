@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  labels:
+    {{- include "wandb.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "wandb.selectorLabels" . | nindent 6 }}
+      app: minio
+  template:
+    metadata:
+      labels:
+        {{- include "wandb.selectorLabels" . | nindent 8 }}
+        app: minio
+    spec:
+      {{- with .Values.minio.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "wandb.serviceAccountName" . }}
+      containers:
+        - name: minio
+          image: "{{ .Values.minio.image.repository }}:{{ .Values.minio.image.tag }}"
+          imagePullPolicy: {{ .Values.minio.image.pullPolicy }}
+          command: ["minio"]
+          args: ["server", "/data", "--console-address", ":9001"]
+          ports:
+            - name: minio
+              containerPort: 9000
+              protocol: TCP
+            - name: minioconsole
+              containerPort: 9001
+              protocol: TCP
+          env:
+            - name: MINIO_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: MINIO_USER
+                  optional: false 
+            - name: MINIO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: MINIO_PASSWORD
+                  optional: false 
+          resources:
+            {{- toYaml .Values.minio.resources | nindent 12 }}
+          volumeMounts:
+          - mountPath: "/data"
+            name: minio
+      volumes:
+        - name: minio
+          persistentVolumeClaim:
+            claimName: minio

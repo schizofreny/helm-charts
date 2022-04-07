@@ -1,0 +1,90 @@
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "wandb-sa"
+
+mysql:
+  image:
+    repository: mysql
+    pullPolicy: IfNotPresent
+    tag: "5.7"
+
+  imagePullSecrets: []
+
+  service:
+    type: ClusterIP
+    port: 3306
+    targetPort: 3306
+
+  resources:
+    limits:
+      cpu: 1
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+
+minio:
+  image:
+    repository: minio/minio
+    pullPolicy: IfNotPresent
+    tag: "RELEASE.2022-04-01T03-41-39Z"
+
+  imagePullSecrets: []
+
+  service:
+    type: ClusterIP
+    port: 9000
+    targetPort: 9000
+    consolePort: 9001
+    consoleTargetPort: 9001
+
+  ingress:
+    enabled: true
+    host: wandbminio.k8s.s9y.io
+    paths:
+      - path: /
+        pathType: Prefix
+
+  resources:
+    limits:
+      cpu: 1
+      memory: 4Gi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+
+wandb:
+  image:
+    repository: wandb/local
+    pullPolicy: Always
+    tag: "latest"
+
+  imagePullSecrets: []
+
+  service:
+    type: ClusterIP
+    port: 8080
+    targetPort: 8080
+
+  ingress:
+    enabled: true
+    host: wandb.k8s.s9y.io
+    paths:
+      - path: /
+        pathType: Prefix
+
+  resources:
+    limits:
+      cpu: 4
+      memory: 8Gi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+
+secret:
+  MYSQL_ROOT_PASSWORD: ""
+  MYSQL_USER: ""
+  MYSQL_PASSWORD: ""
+  MINIO_USER: ""
+  MINIO_PASSWORD: ""

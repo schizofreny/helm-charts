@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wandb
+  labels:
+    {{- include "wandb.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "wandb.selectorLabels" . | nindent 6 }}
+      app: wandb
+  template:
+    metadata:
+      labels:
+        {{- include "wandb.selectorLabels" . | nindent 8 }}
+        app: wandb
+    spec:
+      {{- with .Values.wandb.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "wandb.serviceAccountName" . }}
+      containers:
+        - name: wandb
+          image: "{{ .Values.wandb.image.repository }}:{{ .Values.wandb.image.tag }}"
+          imagePullPolicy: {{ .Values.wandb.image.pullPolicy }}
+          ports:
+            - name: wandb
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.wandb.resources | nindent 12 }}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+          startupProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            failureThreshold: 300 # allow 30 minutes for migrations, wandb starts really slow
+          env:
+            - name: HOST
+              value: "https://{{ .Values.wandb.ingress.host }}"
+            - name: BUCKET_QUEUE
+              value: internal://
+            - name: AWS_REGION  # tohle podle logu musi byt nastaveno, i kdyz pouzivame minio
+              value: us-east-1 
+            - name: LICENSE
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: WANDB_LICENSE
+                  optional: false 
+            - name: BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: WANDB_BUCKET
+                  optional: false 
+            - name: MYSQL
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: WANDB_MYSQL
+                  optional: false 

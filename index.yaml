@@ -53,6 +53,24 @@ entries:
     urls:
     - https://github.com/schizofreny/helm-charts/releases/download/mikrotik-exporter-0.0.1/mikrotik-exporter-0.0.1.tgz
     version: 0.0.1
+  minio:
+  - apiVersion: v1
+    appVersion: master
+    created: "2022-05-22T18:42:47.745112066Z"
+    description: High Performance, Kubernetes Native Object Storage
+    digest: 98722c80ba3bc0910328eb1dadc2a56cbaaa31d2392e3f0e1a3edaec019e7fdf
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    name: minio
+    sources:
+    - https://github.com/minio/minio
+    urls:
+    - https://github.com/schizofreny/helm-charts/releases/download/minio-9.0.0/minio-9.0.0.tgz
+    version: 9.0.0
   ping-exporter:
   - apiVersion: v2
     appVersion: v0.4.5
